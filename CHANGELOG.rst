@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+9.0.0.1
+~~~~~
+
+1) Change repository names
+
 9.0.0
 ~~~~~
 

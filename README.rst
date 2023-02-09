@@ -9,20 +9,20 @@ What does it do?
 This package provides deploy task for deploying WordPress with deployer (deployer.org) and additionally a tasks
 to synchronize database and media files.
 
-The deployment is expected to be compatible with capistrano based for https://roots.io/bedrock/
+The deployment is expected to be compatible with composer based WordPress projects based on https://roots.io/bedrock/
 
 Dependencies
 ------------
 
 This package depends on following packages:
 
-- | `sourcebroker/deployer-extended`_
+- | `digitalerase/deployer-extended`_
   | Package which provides some deployer tasks that can be used for any framework or CMS.
 
-- | `sourcebroker/deployer-extended-database`_
+- | `digitalerase/deployer-extended-database`_
   | Package which provides some php framework independent deployer tasks to synchronize database.
 
-- | `sourcebroker/deployer-extended-media`_
+- | `digitalerase/deployer-extended-media`_
   | Package which provides some php framework independent deployer tasks to synchronize media.
 
 - | `wp-cli/search-replace-command`_
@@ -84,7 +84,7 @@ and path to store database dumps.
 Synchronizing database
 ----------------------
 
-Database synchronization is done with `sourcebroker/deployer-extended-database`.
+Database synchronization is done with `digitalerase/deployer-extended-database`.
 Example of command for synchronizing database from live to local instance:
 ::
 
@@ -141,11 +141,11 @@ the following commands will be done automatically after database import:
 Should I use "deployer-extended-wordpress" or "deployer-extended-wordpress-composer"?
 -------------------------------------------------------------------------------------
 
-In `sourcebroker/deployer-extended-wordpress`_ the WordPress and third party plugins are installed manually. What you have in git is
+In `digitalerase/deployer-extended-wordpress`_ the WordPress and third party plugins are installed manually. What you have in git is
 basically only your theme. The good thing is that in such case you can update WordPress and plugins automatically.
 This can be considered as preferable for low budget WordPress websites.
 
-In `sourcebroker/deployer-extended-wordpress-composer`_ the WordPress and third party plugins are installed using composer.
+In `digitalerase/deployer-extended-wordpress-composer`_ the WordPress and third party plugins are installed using composer.
 This way you gain more control over what is installed but at the same time to install new WordPress or new plugin
 version you need first to modify composer.json or do composer update (depending how big upgrade you do). Then you need
 to commit composer.json / composer.lock and do deploy which will install new version of WordPress and plugins.
@@ -154,10 +154,9 @@ easily cleanup infected WordPress/plugins files as with each deployment all php 
 and part from composer repositories).
 
 
-.. _sourcebroker/deployer-extended: https://github.com/sourcebroker/deployer-extended
-.. _sourcebroker/deployer-extended-media: https://github.com/sourcebroker/deployer-extended-media
-.. _sourcebroker/deployer-extended-database: https://github.com/sourcebroker/deployer-extended-database
-.. _sourcebroker/deployer-extended-wordpress: https://github.com/sourcebroker/deployer-extended-wordpress
-.. _sourcebroker/deployer-extended-wordpress-composer: https://github.com/sourcebroker/deployer-extended-wordpress-composer
+.. _digitalerase/deployer-extended: https://github.com/sourcebroker/deployer-extended
+.. _digitalerase/deployer-extended-media: https://github.com/sourcebroker/deployer-extended-media
+.. _digitalerase/deployer-extended-database: https://github.com/sourcebroker/deployer-extended-database
+.. _digitalerase/deployer-extended-wordpress-composer: https://github.com/sourcebroker/deployer-extended-wordpress-composer
 .. _wp-cli/search-replace-command: https://github.com/wp-cli/search-replace-command
 .. _wp-cli/wp-cli: https://github.com/wp-cli/wp-cli
