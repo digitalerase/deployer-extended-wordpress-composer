@@ -20,8 +20,9 @@ set('shared_dirs', [
 );
 
 set('shared_files', [
-    'config/.env.local',
+    '.env.local',
     'web/.htaccess',
+    '.env'
 ]);
 
 set('writable_dirs', [
@@ -52,7 +53,7 @@ set('clear_paths', [
 
 set('local_host', function () {
     return (new \SourceBroker\DeployerExtendedWordpressComposer\Drivers\EnvDriver())
-        ->getInstanceName(getcwd() . '/config/.env');
+        ->getInstanceName(getcwd() . '/.env');
 });
 
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
@@ -90,11 +91,11 @@ set('db_databases',
             [
                 'ignore_tables_out' => [],
                 'post_sql_in' => '',
-                'post_command' => ['export $(cat config/.env | grep PATH | xargs) && export $(cat config/.env.local | grep PATH | xargs) && {{local/bin/deployer}} db:import:post_command:wp_domains ' . get('local_host')]
+                'post_command' => ['export $(cat .env | grep PATH | xargs) && export $(cat .env.local | grep PATH | xargs) && {{local/bin/deployer}} db:import:post_command:wp_domains ' . get('local_host')]
             ],
             function () {
                 return (new \SourceBroker\DeployerExtendedWordpressComposer\Drivers\EnvDriver())
-                    ->getDatabaseConfig(getcwd() . '/config/.env');
+                    ->getDatabaseConfig(getcwd() . '/.env');
             }
         ]
     ]
