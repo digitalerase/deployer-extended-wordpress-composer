@@ -6,12 +6,17 @@
     "WordPress",
     "deployer",
     "bedrock",
-    "composer"
+    "composer",
+    "roots"
   ],
   "authors": [
     {
       "name": "Krystian Szymukowicz",
       "email": "k.szymukowicz@gmail.com"
+    },
+    {
+      "name": "Digitalera AB",
+      "email": "info@digitalera.se"
     }
   ],
   "require": {
@@ -22,7 +27,7 @@
     "digitalerase/deployer-extended": "^18",
     "digitalerase/deployer-extended-media": "^11",
     "digitalerase/deployer-extended-database": "^16",
-    "sourcebroker/deployer-loader": "^4"
+    "digitalerase/deployer-loader": "^4"
   },
   "autoload": {
     "psr-4": {
