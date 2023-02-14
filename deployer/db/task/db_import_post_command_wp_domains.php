@@ -28,9 +28,14 @@ task('db:import:post_command:wp_domains', function () {
         $publicUrlsPairs = array_combine($sourceInstancePublicUrls, $currentInstancePublicUrls);
         foreach ($publicUrlsPairs as $publicUrlOld => $publicUrlNew) {
             runLocally('{{local/bin/wp}} search-replace ' .
-                escapeshellarg(rtrim($publicUrlOld, '/')) . ' '
-                . escapeshellarg(rtrim($publicUrlNew, '/'))
+                escapeshellarg(preg_replace("(^https?://)", "", rtrim($publicUrlOld, "/") )) . ' '
+                . escapeshellarg(preg_replace("(^https?://)", "", rtrim($publicUrlNew, "/") ))
             );
+            // ### The old way of search-replace domains (From Sourcebroker/DeployerExtendedWordpress) including http(s)://
+            // runLocally('{{local/bin/wp}} search-replace ' .
+            //     escapeshellarg(rtrim($publicUrlOld, '/')) . ' '
+            //     . escapeshellarg(rtrim($publicUrlNew, '/'))
+            // );
         }
     } else {
         throw new \Exception('The amount of public_urls in source and current instance must be the same. [Error code: 1498321606442]');
