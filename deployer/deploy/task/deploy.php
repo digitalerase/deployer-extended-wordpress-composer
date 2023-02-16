@@ -76,6 +76,10 @@ task('deploy', [
     // Read more on https://github.com/sourcebroker/deployer-extended#cache-clear-php-http
     'cache:clear_php_http',
 
+    // ## Custom *
+    // Clear the cache of LiteSpeed, Autoptimize, W3 Total Cache and flushes the Elementor CSS (If available)
+    'cache:clear',
+
     // Frontend access possible again from now
     // Read more on https://github.com/sourcebroker/deployer-extended#buffer-stop
     'buffer:stop',
