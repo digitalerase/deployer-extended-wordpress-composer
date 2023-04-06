@@ -2,8 +2,8 @@
 
 namespace Deployer;
 
-set('instance_local_name', 'dev');
-set('instance_live_name', 'live');
+set('instance_local_name', 'development');
+set('instance_live_name', 'production');
 set('composer_channel', 2);
 set('branch_detect_to_deploy', false);
 set('allow_anonymous_stats', false);
@@ -65,10 +65,10 @@ set('buffer_config', [
 );
 
 // Look https://github.com/sourcebroker/deployer-extended-media for docs
-set('media_allow_push_live', false);
-set('media_allow_pull_live', false);
-set('media_allow_copy_live', false);
-set('media_allow_link_live', false);
+set('media_allow_push_live', true);
+set('media_allow_pull_live', true);
+set('media_allow_copy_live', true);
+set('media_allow_link_live', true);
 set('media',
     [
         'filter' => [
@@ -82,9 +82,9 @@ set('media',
     ]);
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
-set('db_allow_push_live', false);
-set('db_allow_pull_live', false);
-set('db_allow_copy_live', false);
+set('db_allow_push_live', true);
+set('db_allow_pull_live', true);
+set('db_allow_copy_live', true);
 set('db_databases',
     [
         'database_default' => [
