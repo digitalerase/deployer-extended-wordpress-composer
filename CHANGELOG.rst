@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+9.0.0.8
+~~~~~
+
+1) Edited some config to slim our deploy.php file
+
 9.0.0.1
 ~~~~~
 
