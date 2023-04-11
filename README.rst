@@ -35,12 +35,12 @@ Installation
 1) Install package with composer:
    ::
 
-      composer require sourcebroker/deployer-extended-wordpress-composer
+      composer require digitalerase/deployer-extended-wordpress-composer
 
 2) If you are using deployer as phar then put following lines in your deploy.php:
    ::
 
-      require __DIR__ . '/vendor/autoload.php';
+      require_once(__DIR__ . '/vendor/digitalerase/deployer-loader/autoload.php');
       new \SourceBroker\DeployerExtendedWordpressComposer\Loader();
 
 3) Remove task "deploy" from your deploy.php. Otherwise you will overwrite deploy task defined in
@@ -53,28 +53,28 @@ Installation
 
     namespace Deployer;
 
-    require_once(__DIR__ . '/vendor/sourcebroker/deployer-loader/autoload.php');
+    require_once(__DIR__ . '/vendor/digitalerase/deployer-loader/autoload.php');
     new \SourceBroker\DeployerExtendedWordpressComposer\Loader();
 
     set('repository', 'git@my-git:my-project.git');
 
-    host('live')
-        ->setHostname('111.111.111.111')->port(22)
+    host('development')
+        ->set('public_urls', ['https://example.test/'])
+        ->set('deploy_path', getcwd());
+
+    host('staging')
+        ->setHostname('111.111.111.111')
+        ->setRemoteUser('www-data')
+        ->set('branch', 'staging')
+        ->set('public_urls', ['https://www.example.staging.com/'])
+        ->set('deploy_path', '/var/www/example.staging.com');
+
+    host('production')
+        ->setHostname('111.111.111.111')
         ->setRemoteUser('www-data')
         ->set('branch', 'master')
-        ->set('public_urls', ['https://www.example.com/'])
-        ->set('deploy_path', '/var/www/example.com.live');
-
-    host('beta')
-        ->setHostname('111.111.111.111')->port(22)
-        ->setRemoteUser('www-data')
-        ->set('branch', 'beta')
-        ->set('public_urls', ['https://beta.example.com/'])
-        ->set('deploy_path', '/var/www/example.com.beta');
-
-    host('dev')
-        ->set('public_urls', ['https://example-com.local/'])
-        ->set('deploy_path', getcwd());
+        ->set('public_urls', ['https://example.com/'])
+        ->set('deploy_path', '/var/www/example.com');
 
 
 Mind the declaration of host('dev'); Its needed for database tasks to declare domain replacements,
@@ -85,15 +85,15 @@ Synchronizing database
 ----------------------
 
 Database synchronization is done with `digitalerase/deployer-extended-database`.
-Example of command for synchronizing database from live to local instance:
+Example of command for synchronizing database from production to local instance:
 ::
 
-   dep db:pull live
+   dep db:pull production
 
-You can also copy database from live to beta instance like:
+You can also copy database from production to staging instance like:
 ::
 
-   dep db:copy live --options=target:beta
+   dep db:copy production --options=target:staging
 
 
 
@@ -109,33 +109,35 @@ every pair of corresponding urls.
 Look at following example to give you idea:
 ::
 
-    host('live')
-        ->setHostname('111.111.111.111')
-        ->setRemoteUser('www-data')
-        ->set('public_urls', ['https://www.example.com', 'https://sub.example.com'])
-        ->set('deploy_path', '/var/www/example.com.live');
-
-    host('beta')
-        ->setHostname('111.111.111.111')
-        ->setRemoteUser('www-data')
-        ->set('public_urls', ['https://beta.example.com', 'https://beta-sub.example.com'])
-        ->set('deploy_path', '/var/www/example.com.beta');
-
-    host('dev')
-        ->set('public_urls', ['https://example-com.dev', 'https://sub-example-com.dev'])
+    host('development')
+        ->set('public_urls', ['https://example.test', 'https://sub-example.test'])
         ->set('deploy_path', getcwd());
+
+    host('staging')
+        ->setHostname('111.111.111.111')
+        ->setRemoteUser('www-data')
+        ->set('public_urls', ['https://example.staging.com', 'https://sub-example.staging.com'])
+        ->set('deploy_path', '/var/www/example.staging.com');
+
+    host('production')
+        ->setHostname('111.111.111.111')
+        ->setRemoteUser('www-data')
+        ->set('public_urls', ['https://example.com', 'https://sub-example.se'])
+        ->set('deploy_path', '/var/www/example.com');
+
+
 
 
 The if you will do:
 ::
 
-    dep db:pull live
+    dep db:pull production
 
 the following commands will be done automatically after database import:
 ::
 
-    wp search-replace https://www.example.com https://example-com.dev
-    wp search-replace https://sub.example.com https://sub-example-com.dev
+    wp search-replace https://example.com https://example.test
+    wp search-replace https://sub-example.com https://sub-example.test
 
 
 Should I use "deployer-extended-wordpress" or "deployer-extended-wordpress-composer"?
