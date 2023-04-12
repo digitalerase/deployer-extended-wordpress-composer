@@ -156,9 +156,9 @@ easily cleanup infected WordPress/plugins files as with each deployment all php 
 and part from composer repositories).
 
 
-.. _digitalerase/deployer-extended: https://github.com/sourcebroker/deployer-extended
-.. _digitalerase/deployer-extended-media: https://github.com/sourcebroker/deployer-extended-media
-.. _digitalerase/deployer-extended-database: https://github.com/sourcebroker/deployer-extended-database
-.. _digitalerase/deployer-extended-wordpress-composer: https://github.com/sourcebroker/deployer-extended-wordpress-composer
+.. _digitalerase/deployer-extended: https://github.com/digitalerase/deployer-extended
+.. _digitalerase/deployer-extended-media: https://github.com/digitalerase/deployer-extended-media
+.. _digitalerase/deployer-extended-database: https://github.com/digitalerase/deployer-extended-database
+.. _digitalerase/deployer-extended-wordpress-composer: https://github.com/digitalerase/deployer-extended-wordpress-composer
 .. _wp-cli/search-replace-command: https://github.com/wp-cli/search-replace-command
 .. _wp-cli/wp-cli: https://github.com/wp-cli/wp-cli
